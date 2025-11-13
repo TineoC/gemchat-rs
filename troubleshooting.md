@@ -18,3 +18,73 @@ __Resources__
 - [Error code 429](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/provisioned-throughput/error-code-429)
 
                    
+<hr>
+
+## Rate limiting
+
+Rate limits regulate the number of requests you can make to the Gemini API within a given timeframe. These limits help maintain fair usage, protect against abuse, and help maintain system performance for all users.
+
+[View your active rate limits in AI Studio](https://aistudio.google.com/usage?timeRange=last-28-days&tab=rate-limit)
+
+## How rate limits work
+
+Rate limits are usually measured across three dimensions:
+
+- Requests per minute (**RPM**)
+- Tokens per minute (input) (**TPM**)
+- Requests per day (**RPD**)
+
+Your usage is evaluated against each limit, and exceeding any of them will trigger a rate limit error. For example, if your RPM limit is 20, making 21 requests within a minute will result in an error, even if you haven't exceeded your TPM or other limits.
+
+Rate limits are applied per project, not per API key.
+
+Requests per day (**RPD**) quotas reset at midnight Pacific time.
+
+Limits vary depending on the specific model being used, and some limits only apply to specific models. For example, Images per minute, or IPM, is only calculated for models capable of generating images (Imagen 3), but is conceptually similar to TPM. Other models might have a token per day limit (TPD).
+
+Rate limits are more restricted for experimental and preview models.
+
+## Usage tiers
+
+Rate limits are tied to the project's usage tier. As your API usage and spending increase, you'll have an option to upgrade to a higher tier with increased rate limits.
+
+The qualifications for Tiers 2 and 3 are based on the total cumulative spending on Google Cloud services (including, but not limited to, the Gemini API) for the billing account linked to your project.
+
+|  Tier  |                                               Qualifications                                               |
+|--------|------------------------------------------------------------------------------------------------------------|
+| Free   | Users in[eligible countries](https://ai.google.dev/gemini-api/docs/available-regions)                      |
+| Tier 1 | Billing account[linked to the project](https://ai.google.dev/gemini-api/docs/billing#enable-cloud-billing) |
+| Tier 2 | Total spend: \> $250 and at least 30 days since successful payment                                         |
+| Tier 3 | Total spend: \> $1,000 and at least 30 days since successful payment                                       |
+
+When you request an upgrade, our automated abuse protection system performs additional checks. While meeting the stated qualification criteria is generally sufficient for approval, in rare cases an upgrade request may be denied based on other factors identified during the review process.
+
+This system helps maintain the security and integrity of the Gemini API platform for all users.
+
+## Standard API rate limits
+
+The following table lists the rate limits for all standard Gemini API calls.
+**Note:** Any values that show`*`have no published rate limits.  
+
+### Free Tier
+
+|                   Model                   | RPM |    TPM    |  RPD   |
+|                          Text-out models                          ||||
+|-------------------------------------------|-----|-----------|--------|
+| Gemini 2.5 Pro                            | 2   | 125,000   | 50     |
+| Gemini 2.5 Flash                          | 10  | 250,000   | 250    |
+| Gemini 2.5 Flash Preview                  | 10  | 250,000   | 250    |
+| Gemini 2.5 Flash-Lite                     | 15  | 250,000   | 1,000  |
+| Gemini 2.5 Flash-Lite Preview             | 15  | 250,000   | 1,000  |
+| Gemini 2.0 Flash                          | 15  | 1,000,000 | 200    |
+| Gemini 2.0 Flash-Lite                     | 30  | 1,000,000 | 200    |
+| Gemini 2.5 Flash Live                     | \*  | 1,000,000 | \*     |
+| Gemini 2.5 Flash Preview Native Audio     | \*  | 500,000   | \*     |
+| Gemini 2.0 Flash Live                     | \*  | 1,000,000 | \*     |
+| Gemini 2.5 Flash Preview TTS              | 3   | 10,000    | 15     |
+| Gemini 2.0 Flash Preview Image Generation | 10  | 200,000   | 100    |
+| Gemma 3 \& 3n                             | 30  | 15,000    | 14,400 |
+| Gemini Embedding                          | 100 | 30,000    | 1,000  |
+| Gemini Robotics-ER 1.5 Preview            | 10  | 250,000   | 250    |
+| Gemini 1.5 Flash (Deprecated)             | 15  | 250,000   | 50     |
+| Gemini 1.5 Flash-8B (Deprecated)          | 15  | 250,000   | 50     |
