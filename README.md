@@ -1,4 +1,4 @@
-# Cybersecurity Chatbot - External Service
+# Cybersecurity Chatbot
 
 A standalone Rust microservice powered by Google Gemini AI that helps university students learn cybersecurity concepts and terminology. This service can be integrated into your existing webapp through a REST API or as an embeddable widget.
 
